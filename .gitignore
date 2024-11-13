@@ -1,0 +1,12 @@
+.venv/*
+.env/*
+env/*
+venv/*
+results/*
+logs/*
+browser/*
+output.xml
+log.html
+report.html
+playwright-log.txt
+.DS_Store

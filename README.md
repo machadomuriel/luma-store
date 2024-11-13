@@ -1,65 +1,122 @@
-# Q.A Challenge Luma Store
 
-Este é um desafio para que possamos ver as suas habilidades como QA/Tester.
+# QA Challenge - Luma Store Automation
 
-Nesse desafio você deverá testar de forma automatizada o site Luma Store. O projeto a ser desenvolvido por você tem como objetivo exibir executar ações na loja conforme indicado nos casos de uso que estão logo abaixo.
+## Projeto de Automação de Testes - Luma Store
 
-[SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
+Este projeto tem como objetivo automatizar cenários de teste para o site [Luma Store](https://magento.softwaretestingboard.com/)
+, aplicando conceitos de testes de caixa preta. Utilizando o Robot Framework com a biblioteca Browser, foram criados scripts para validar funcionalidades principais da loja.
 
-### Antes de começar
- 
-- Considere como prazo limite da avaliação o período a partir do início do teste. Se, por algum motivo, não for possível concluir dentro deste prazo, avise a pessoa que o convidou para receber instruções sobre o que fazer.
-- Documente todo o processo de investigação para o desenvolvimento da atividade (README.md no seu repositório); os resultados destas tarefas são tão importantes quanto o seu processo de pensamento e decisões à medida que as completa, por isso, tente documentar e apresentar as suas hipóteses e decisões na medida do possível.
+### Ferramentas e Tecnologias Utilizadas
+- **Framework:** Robot Framework
+- **Bibliotecas:**
+  - **Browser**: Para automação de navegadores usando Playwright, permitindo interações rápidas e estáveis.
+  - **FakerLibrary**: Para geração de dados fictícios dinâmicos (como nome e e-mail), facilitando a execução de testes com diferentes entradas.
 
+### Estrutura de Pastas
 
-#### Tecnologias:
-- Ferramenta: Ghost Inspector, Selenium, Cypress, Robot Framework, ou outro de seu conhecimento
-- Adicionais: Cucumber ou outros plugins necessários para configurar a ferramenta
+A organização do projeto visa simplificar a manutenção e facilitar a navegação pelos recursos de teste, seguindo uma arquitetura baseada em recursos e páginas, que é próxima ao modelo Page Object:
+- **commom/**: Contém arquivos de constantes e variáveis comuns.
+- **resources/components/**: Componentes reutilizáveis como cabeçalho e criação de dados.
+- **resources/pages/**: Recursos específicos de páginas da loja.
+- **tests/**: Armazena os arquivos principais de testes automatizados.
+- **hooks/**: Arquivo para ações executadas antes ou depois dos testes.
 
-## Teste
+Essa estrutura permite reaproveitamento de código e simplifica a manutenção. A arquitetura é inspirada em Page Object, organizando funcionalidades por página.
 
-Neste desafio aplicaremos os conceitos de teste caixa preta, onde testaremos a página https://magento.softwaretestingboard.com
+### Escolha do Robot Framework e Bibliotecas
 
-> Nota: utilize dados fictícios criados através do site https://randomuser.me
+Optou-se pelo **Robot Framework** pela sua legibilidade e capacidade de integração com várias bibliotecas de automação, incluindo Browser para testes de UI. Abaixo, uma comparação com outras ferramentas consideradas:
 
-**Obrigatório 1** - Para realizar o teste precisamos escolher a ferramenta de teste. Explicar o por quê da escolha, as vantagens e desvantagens dos que não foram escolhidos.
+1. **Ghost Inspector**
+   - **Vantagens**: Simplicidade, ideal para times não técnicos, integração rápida com CI/CD.
+   - **Desvantagens**: Baixa flexibilidade e dependência de nuvem.
+2. **Selenium**
+   - **Vantagens**: Alta flexibilidade, grande comunidade.
+   - **Desvantagens**: Configuração complexa e manutenção trabalhosa.
+3. **Cypress**
+   - **Vantagens**: Desempenho e integração com JavaScript.
+   - **Desvantagens**: Suporte limitado a navegadores e linguagens.
 
-**Obrigatório 2** - Você deverá atender aos seguintes casos de uso:
+O **Robot Framework** destacou-se como escolha ideal pela sua versatilidade e clareza de sintaxe, além de fornecer relatórios nativos sem necessidade de implementações manuais.
 
-- Se a página está carregando corretamente a home page;
-- Buscar por `shirt` no menu superior e revisar se a página de resultados carregou corretamente. Veja o diferencial 1 para incrementar este caso de uso;
-- Adicionar um produto no carrinho
-- Realizar checkout
+### Casos de Teste Criados
 
-### Diferenciais
-Além do que foi solicitado, existem itens adicionais para incrementar o projeto final. Você também pode adicionar algum recurso não citado anteriormente.
+1. **Verificar Carregamento da Home Page**: Assegurar que a página principal da loja carrega corretamente.
+2. **Buscar Produto (shirt)**: Testa a busca por "shirt" no menu superior, verificando o carregamento correto dos resultados. Diferencial: Automação clica no último resultado sugerido.
+3. **Adicionar Produto ao Carrinho**: Verifica o processo de adição de um item ao carrinho.
+4. **Realizar Checkout**: Valida o processo de finalização de compra.
+5. **Criar Conta de Usuário** (Diferencial): Verifica a criação de uma conta na loja usando dados fictícios.
 
-- **Diferencial 1** - Buscar por `shirt` no menu superior e clicar no último resultado sugerido. Se possível, escute o retorno da requisição para saber o momento de clicar na interface;
-- **Diferencial 2** - Criar uma conta na tela de Login/Cadastro. Observe que existe um captcha no formulário, então é necessário decidir como abordar este campo;
-- **Diferencial 3** - Adicionar um produto **aleatório** do catalogo de moda masculina no carrinho;
-- **Diferencial 4** - Adicionar comentário em um produto **aleatório** do catálogo de moda masculina no carrinho;
-- **Diferencial 5** - Gerar um relatório automático do teste.
+Esses casos foram modelados e inicialmente executados manualmente para validar os cenários antes de serem automatizados.
 
-## Readme do Repositório
+### Uso do Gherkin
 
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
+A escolha do Gherkin permite definir os testes de forma legível e estruturada, o que facilita o entendimento e colaboração, além de ser uma prática comum em projetos de automação, especialmente para equipes multidisciplinares.
+
+### Idioma do Projeto
+
+O projeto está escrito em inglês, visando escalabilidade para equipes internacionais e alinhamento com as práticas da indústria.
+
+### Preparação do Ambiente e Execução do Projeto
+
+1. **Instalar o Python**:
+   - Verifique se o Python está instalado usando o comando:
+     ```bash
+     python3 --version  # É necessário Python 3.8 ou superior
+     ```
+   - Caso não esteja instalado, baixe e instale a versão mais recente (3.8 ou superior) em https://www.python.org/downloads/
+
+2. **Criar e Ativar Ambiente Virtual** (opcional, mas recomendado):
+   - Na raiz do projeto, execute:
+     - **Windows**
+       ```bash
+       python -m venv env
+       .\env\Scripts\activate
+       ```
+     - **Linux/MacOS**
+       ```bash
+       python3 -m venv env
+       source env/bin/activate
+       ```
+
+3. **Instalar o Robot Framework e Dependências**:
+   - Na raiz do projeto, execute:
+     ```bash
+     pip install --upgrade pip
+     pip install -r requirements.txt
+     ```
+
+4. **Verificar Instalação do Robot Framework**:
+   ```bash
+   robot --version
+   ```
+
+5. **Instalar Node.js e Dependências**:
+   - Baixe e instale Node.js em https://nodejs.org/pt/download/prebuilt-installer
+   - Verifique a instalação:
+     ```bash
+     node -v
+     ```
+
+6. **Inicializar a Biblioteca Browser**:
+   ```bash
+   rfbrowser init
+   ```
+   
+7. **Execução dos Testes**:
+   - Modo Headless (sem interface gráfica):
+     ```bash
+     robot -d logs -v HEADLESS:True tests
+     ```
+   - Modo Assistido (com interface gráfica):
+     ```bash
+     robot -d logs tests
+     ```
+    O relatório e log de execução serão gerados na pasta logs.
+
+### Observações Adicionais
+
+- **Seletores CSS**: Preferiu-se o uso de seletores CSS por serem mais rápidos. O XPath relativo foi usado apenas quando o uso do CSS não era possível ou viável, evitando XPath absoluto por ser mais frágil.
+- **Falsos Negativos**: Testes de UI são suscetíveis a falsos negativos. Recomenda-se reexecução em caso de falhas esporádicas.
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)
-
-## Finalização e Instruções para a Apresentação
-
-1. Adicione o link do repositório com a sua solução no teste
-2. Verifique se o Readme está bom e faça o commit final em seu repositório;
-3. Envie e aguarde as instruções para seguir. Sucesso e boa sorte. =)
-
-## Suporte
-
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
-
-
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
